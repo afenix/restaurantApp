@@ -3,6 +3,7 @@
   <head>
     <title>Restaurants</title>
     <script src='lib/angular.js'></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular-animate.js"></script>
     <script src='app.js'></script>
     <script src='js/RestaurantsController.js'></script>
     <link rel="stylesheet" href="css/bootstrap-paper.css" media="screen" title="no title" charset="utf-8">
@@ -20,14 +21,14 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" ng-app="ngAnimate">
         <div class="col-md-12">
           <h2 ng-show="restaurants.length && filtered.length">Best Restaurants in the World</h2>
           <h2 ng-show="restaurants.length && !filtered.length">No Restaurants</h2>
           <ul>
             <li ng-repeat="item in filtered = (restaurants | filter:query)">
               <span ng-click="editing = true" ng-hide="editing">
-              {{item.name + ', ' + item.type + ', ' + item.price + ', ' + item.location + ', ' + item.description}} <a ng-click="deleteRestaurant(item)">Delete</a>
+                {{item.name + ', ' + item.type + ', ' + item.price + ', ' + item.location + ', ' + item.description}} <a ng-click="deleteRestaurant(item)">Delete</a>
               </span>
               <span class="form-group" ng-show="editing" ng-submit="editing = false">
                 <form class="form-inline" role="form">
@@ -40,6 +41,10 @@
                 </form>
                 <form class="form-inline" role="form">
                   <input type="text" class="form-control input-sm" ng-model="item.type" placeholder="Type" required/>
+                  <button class="btn btn-primary btn-sm" type="submit">Save</button>
+                </form>
+                <form class="form-inline" role="form">
+                  <input type="text" class="form-control input-sm" ng-model="item.description" placeholder="Type" required/>
                   <button class="btn btn-primary btn-sm" type="submit">Save</button>
                 </form>
                 <select class="select-inline" roll="select" ng-model="item.price">
