@@ -27,9 +27,13 @@
           <h2 ng-show="restaurants.length && !filtered.length">No Restaurants</h2>
           <ul>
             <li ng-repeat="item in filtered = (restaurants | filter:query)">
-              <span ng-click="editing = true" ng-hide="editing">
-                {{item.name + ', ' + item.type + ', ' + item.price + ', ' + item.location + ', ' + item.description}} <a ng-click="deleteRestaurant(item)">Delete</a>
+              <input type="checkbox" ng-model="checked" ng-init="checked=true"/>
+              <span ng-show="restaurant-info" ng-hide="editing" class="animate-if">
+                {{item.name}} <a ng-click="deleteRestaurant(item)">Delete</a>
               </span>
+                <!-- <span ng-click="editing = true" ng-hide="editing">
+                  {{item.name}} <a ng-click="deleteRestaurant(item)">Delete</a>
+                </span> -->
               <span class="form-group" ng-show="editing" ng-submit="editing = false">
                 <form class="form-inline" role="form">
                   <input type="text" class="form-control input-sm" ng-model="item.name" placeholder="Name" required/>
